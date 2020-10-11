@@ -117,6 +117,9 @@
     "symfony/mime": {
         "version": "v4.4.15"
     },
+    "symfony/orm-pack": {
+        "version": "v2.0.0"
+    },
     "symfony/polyfill-intl-idn": {
         "version": "v1.18.1"
     },
