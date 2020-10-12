@@ -26,6 +26,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/page/1, roles: [ROLE_ADMIN, ROLE_PAGE_1] }
+        - { path: ^/page/2, roles: [ROLE_ADMIN, ROLE_PAGE_2] }
         - { path: ^/custom, roles: [ROLE_USER] }
         - { path: ^/api/user, roles: [ROLE_ADMIN], methods: [POST] }
         - { path: ^/api/user, roles: [ROLE_ADMIN], methods: [PUT] }
