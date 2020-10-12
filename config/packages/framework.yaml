@@ -1,6 +1,6 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
-    secret: '%env(APP_SECRET)%'
+    secret: "%env(APP_SECRET)%"
     #csrf_protection: true
     #http_method_override: true
 
@@ -10,6 +10,7 @@ framework:
         handler_id: null
         cookie_secure: auto
         cookie_samesite: lax
+        cookie_lifetime: 300
 
     #esi: true
     #fragments: true

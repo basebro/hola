@@ -7,6 +7,7 @@ use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/api", name="api", methods={"GET"})
@@ -16,20 +17,9 @@ class ApiController extends AbstractFOSRestController
     const JSON = "json";
 
     /**
-     * @Route("/index", name="index", methods={"GET"})
-     */
-    public function index()
-    {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/ApiController.php',
-        ]);
-    }
-
-    /**
      * @Route("/user/{id}", name="get_user", methods={"GET"})
      */
-    public function getUserAction($id)
+    public function getOneUser($id)
     {
         $action = "Get User";
         try {
@@ -54,7 +44,7 @@ class ApiController extends AbstractFOSRestController
     /**
      * @Route("/users", name="get_users", methods={"GET"})
      */
-    public function getUsersAction()
+    public function getUsers()
     {
         $action = "Get Users";
 
@@ -80,7 +70,7 @@ class ApiController extends AbstractFOSRestController
     /**
      * @Route("/user", name="new_user", methods={"POST"})
      */
-    public function newUserAction(Request $request)
+    public function newUser(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $action = "New Users";
 
@@ -97,7 +87,7 @@ class ApiController extends AbstractFOSRestController
             $user = new User();
             $user->setName($name);
             $user->setUsername($username);
-            $user->setPassword($password);
+            $user->setPassword($encoder->encodePassword($user, $password));
             $user->setRoles($roles);
 
             $em->persist($user);
@@ -119,7 +109,7 @@ class ApiController extends AbstractFOSRestController
     /**
      * @Route("/user/{id}", name="update_user", methods={"PUT"})
      */
-    public function updateUser(Request $request, int $id)
+    public function updateUser(Request $request, int $id, UserPasswordEncoderInterface $encoder)
     {
 
         $action = "Update User";
@@ -137,7 +127,7 @@ class ApiController extends AbstractFOSRestController
 
             $user->setName($name);
             $user->setUsername($username);
-            $user->setPassword($password);
+            $user->setPassword($encoder->encodePassword($user, $password));
             $user->setRoles($roles);
 
             $em->persist($user);

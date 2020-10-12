@@ -4,11 +4,12 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -33,9 +34,9 @@ class User
     private $password;
 
     /**
-     * @ORM\Column(type="string", columnDefinition="ENUM('ADMIN', 'PAGE_1', 'PAGE_2')")
+     * @ORM\Column(type="json")
      */
-    private $roles;
+    private $roles = [];
 
     public function getId(): ?int
     {
@@ -78,15 +79,25 @@ class User
         return $this;
     }
 
-    public function getRoles(): ?string
+    public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
-    public function setRoles(string $roles): self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
         return $this;
+    }
+    public function getSalt()
+    {
+    }
+    public function eraseCredentials()
+    {
     }
 }
