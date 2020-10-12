@@ -25,4 +25,13 @@ class CustomController extends AbstractController
             'controller_name' => 'CustomController',
         ]);
     }
+    /**
+     * @Route("/page/2", name="page_2")
+     */
+    public function page2()
+    {
+        return $this->render('custom/page-2.html.twig', [
+            'controller_name' => 'CustomController',
+        ]);
+    }
 }
