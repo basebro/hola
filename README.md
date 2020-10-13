@@ -10,19 +10,19 @@ This API contains some endpoints to manage users and a small login to test
 
 - *create your own .env file with your config*
 -  **launch following commands:**
--- *composer install*
--- *php bin/console doctrine:database:create*
--- *php bin/console doctrine:migrations:migrate*
---*php bin/console doctrine:fixtures:load*
+- *composer install*
+- *php bin/console doctrine:database:create*
+- *php bin/console doctrine:migrations:migrate*
+- *php bin/console doctrine:fixtures:load*
 
 ## Install with Docker
 - *select docker branch and download it*
 - *create your own .env file with your config in /apps/hola/*
 -  **launch following commands:**
--- *docker-compose up –d*
--- *docker exec -it "your_php_container_name" php bin/console doctrine:database:create*
--- *docker exec -it "your_php_container_name" php bin/console doctrine:migrations:migrate*
--- *docker exec -it "your_php_container_name" php bin/console doctrine:fixtures:load*
+- *docker-compose up –d*
+- *docker exec -it "your_php_container_name" php bin/console doctrine:database:create*
+- *docker exec -it "your_php_container_name" php bin/console doctrine:migrations:migrate*
+- *docker exec -it "your_php_container_name" php bin/console doctrine:fixtures:load*
 
 ### *Build in server
 Symfony provides a web server built on top of this PHP server to simplify your local setup.
